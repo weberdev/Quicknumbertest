@@ -76,7 +76,7 @@ namespace Quicknumbertest // Note: actual namespace depends on the project name.
                 }
                 for (int i = 0; i < numTrials; i++)
                 {
-                    int currVal = this.RollNDice(numDice, 8, 6, true);
+                    int currVal = this.RollAttribute(numDice, 8, 6, true);
                     if (currVal < 20) { holder[currVal]++; }
 
                     total += currVal;
@@ -103,13 +103,13 @@ namespace Quicknumbertest // Note: actual namespace depends on the project name.
         }
         public int OpposedRoll(int attPool, int defPool){
             int difference = 0;
-            int attSucc = RollNDice(attPool, 8, 6, true);
-            int defSucc = RollNDice(defPool, 8, 6, true);
+            int attSucc = RollAttribute(attPool, 8, 6, true);
+            int defSucc = RollAttribute(defPool, 8, 6, true);
             difference = attSucc-defSucc;
             if (difference < 0) { difference = 0;} 
             return difference;
 }        
-        public int RollNDice(int numberOfDice, int diceSize, int successValue, bool quiet = false)
+        public int RollAttribute(int numberOfDice, int diceSize, int successValue, bool quiet = false)
     {
         if (successValue >= diceSize)
             {
@@ -195,6 +195,14 @@ namespace Quicknumbertest // Note: actual namespace depends on the project name.
             }
             return currentScore;
         }
+
+        int DamageRoll(int damageDie, int numberOfDice)
+        {int sum = 0;
+            for (int i = 0; i< numberOfDice; i++)
+            {
+                sum += RollOneDie(damageDie);
+            }
+            return sum; }
 
     }
 }
